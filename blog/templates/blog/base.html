@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    .appBar {
+      display: flex; 
+      align-items: center;
+      padding-right: 30px;
+      padding-left: 30px;
+
+    }
+    .topBar {
+      display: flex;
+      align-items: center;
+    }
+    .left {
+      margin-left: auto;
+    }
+    .card {
+      padding: 30px 50px;
+      width: 60%;
+      margin: 30px auto;
+      border-radius: 4px;
+      box-shadow: 1px 1px 5px #336699;
+      background-color: #336699;
+      color: #ffffff;
+    }
+    .login {
+      padding: 30px 50px;
+      width: 210px;
+      margin: 30px auto;
+      border-radius: 4px;
+      box-shadow: 1px 1px 5px #336699;
+      background-color: #336699;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card a {
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .posts {
+      padding: 30px 50px;
+      width: 60%;
+      margin: auto;
+      border-radius: 4px;
+    }
+    .post {
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      min-height: 300px;
+      box-shadow: 1px 1px 5px #336699;
+    }
+    .post_list {
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 5px #336699;
+    }
+    hr {
+      color: #dddddd
+    }
+    .btn {
+      cursor: pointer;
+      padding: 10px 30px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      color: #336699;
+      font-size: 1rem;
+    }
+    .error {
+      text-align: center;
+      color: red;
+
+    }
+  </style>
+  <title>Blog</title>
+</head>
+<body>
+
+  <div class="appBar">
+    <div class="topBar">
+      <h1 style="margin-right: 30px;">
+        <a href="{% url 'blog:index' %}">Blog Tec</a>
+      </h1>
+    </div>
+    <div></div>
+    <div class="left">
+      {% if user.is_authenticated %}
+        <a style="margin-right: 30px;" href="{% url 'blog:posts' %}">Minhas postagens </a>
+        <a href="{% url 'users:logout' %}">Sair </a>
+      {% else %}
+        <a href="{% url 'users:login' %}">Entrar </a>
+      {% endif  %}
+    </div>
+  </div>
+
+  {% block content %}{% endblock content %}
+</body>
+</html>

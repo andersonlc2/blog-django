@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+  <div class="post">
+    <div>
+      <form action="{% url 'blog:del_post' posts.id %}" method="POST">
+        <h4>Confirma a exclusão do posts ?</h4>
+        {% csrf_token %}
+        <button class="btn" name="submit">Confirma</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}

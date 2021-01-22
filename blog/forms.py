@@ -1,0 +1,13 @@
+from django import forms
+from django.forms import fields, widgets
+
+from .models import BlogPost
+
+
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = BlogPost
+        fields = ['title', 'text']
+        widgets = {
+            'text': forms.Textarea(attrs={'cols': 80}),
+        }

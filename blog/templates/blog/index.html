@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+  <div class="card">
+    <h2>
+      Home Page 
+    </h2>
+    <p>
+      Bem vindo ao Blog Tec aqui você fica bem informado com as notícias mais recentes
+      da área de tecnologia por todo o mundo.
+    </p>
+    {% if user.is_authenticated %}
+      <p style="display: block; margin-top:100px">
+        Bem vindo, <strong>{{ user.username }}</strong>.
+      </p>
+    {% else %}
+      <p style="display: block; margin-top:100px">
+        Faça seu cadastro para ficar bem informado!
+      </p>
+      <a href="{% url 'users:register' %}">
+        <button class="btn" type="button">Registrar</button>  
+      </a> 
+    {% endif %}
+  </div>
+  <div class="posts" >
+    {% if posts %}
+      {% for post in posts %}
+        <div class="post">
+          <h3>
+            <a href="{% url 'blog:post' post.id %}" >{{ post.title }}</a>
+          </h3>
+          <hr>
+          <p>
+            {{ post.text }}
+          </p>
+          <hr>
+          <small>
+            {{ post.date_added }}
+          </small>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>
+        Não temos publicações recentes para visualizar.
+      </p>
+    {% endif %}
+  </div>
+
+
+{% endblock content %}
